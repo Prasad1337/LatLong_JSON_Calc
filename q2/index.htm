@@ -1,27 +1,30 @@
 <html>
 <head>
     <title>Intercom.io Question 2</title>
+    <script src="jquery-2.2.0.min.js"></script>
     <script type="text/javascript">
-        function readTextFile(file)
+        var txt,json;
+
+        function populateDiv(url)
         {
-            var rawFile = new XMLHttpRequest();
-            rawFile.open("GET", file, false);
-            rawFile.onreadystatechange = function ()
+            var xhr = new XMLHttpRequest();
+
+            xhr.onload = function ()
             {
-                if(rawFile.readyState === 4)
-                {
-                    if(rawFile.status === 200 || rawFile.status == 0)
-                    {
-                        var allText = rawFile.responseText;
-                        alert(allText);
-                    }
-                }
-            }
-            rawFile.send(null);
+                txt = this.responseText;
+                json = $.parseJSON(JSON.stringify(txt));
+                document.getElementById('contents').textContent = url + ' loaded!';
+            };
+
+            xhr.open('GET', url);
+            xhr.send();
         }
+
+        populateDiv('customers.txt');
     </script>
 </head>
 <body>
-
+    <div id="contents"></div>
+    <p id="demo"></p>
 </body>
 </html>
