@@ -13,7 +13,7 @@
             {
                 txt = this.responseText;
                 json = $.parseJSON(JSON.stringify(txt));
-                document.getElementById('contents').textContent = url + ' loaded!';
+                document.getElementById('contents').textContent = json + ' loaded!';
             };
 
             xhr.open('GET', url);
@@ -25,6 +25,5 @@
 </head>
 <body>
     <div id="contents"></div>
-    <p id="demo"></p>
 </body>
 </html>
